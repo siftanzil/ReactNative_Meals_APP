@@ -1,19 +1,21 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import CatagoriesScreen from "./screens/CatagoriesScreen";
 
 export default function App() {
    return (
-      <View style={styles.container}>
-         <Text>Meals App</Text>
-         <StatusBar style="auto" />
-      </View>
+      <>
+         <StatusBar style="inverted" />
+         <CatagoriesScreen />
+      </>
    );
 }
 
 const styles = StyleSheet.create({
    container: {
       flex: 1,
-      backgroundColor: "#fff",
+      color: "white",
+      backgroundColor: "black",
       alignItems: "center",
       justifyContent: "center",
    },
