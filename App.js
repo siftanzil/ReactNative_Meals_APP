@@ -1,13 +1,40 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text } from "react-native";
+import { Button } from "react-native";
 
 import CatagoriesScreen from "./screens/CatagoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealDetailScreen from "./screens/MealDetailScreen";
+import FavoritesScreen from "./screens/FavoritesScreen";
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const DrawerNavigator = () => {
+   return (
+      <Drawer.Navigator
+         screenOptions={{
+            headerStyle: { backgroundColor: "brown" },
+            headerTintColor: "orange",
+            sceneContainerStyle: { backgroundColor: "wheat" },
+            drawerContentStyle: { backgroundColor: "brown" },
+            drawerActiveTintColor: "orange",
+            drawerInactiveTintColor: "white",
+         }}>
+         <Drawer.Screen
+            name="Categories"
+            component={CatagoriesScreen}
+            options={{
+               headerShown: true,
+               title: "All Categories",
+            }}
+         />
+         <Drawer.Screen name="Favorites" component={FavoritesScreen} />
+      </Drawer.Navigator>
+   );
+};
 
 export default function App() {
    return (
@@ -16,15 +43,20 @@ export default function App() {
          <NavigationContainer>
             <Stack.Navigator
                screenOptions={{
-                  headerStyle: { backgroundColor: "brown" },
-                  headerTintColor: "white",
-                  cardStyle: { backgroundColor: "wheat" },
+                  headerStyle: {
+                     backgroundColor: "brown",
+                  },
+                  headerTitleAlign: "center",
+                  headerTintColor: "orange",
+                  cardStyle: {
+                     backgroundColor: "wheat",
+                  },
                }}>
                <Stack.Screen
-                  name="MealsCategories"
-                  component={CatagoriesScreen}
+                  name="Drawer"
+                  component={DrawerNavigator}
                   options={{
-                     title: "All Categories",
+                     headerShown: false,
                   }}
                />
                <Stack.Screen
@@ -45,13 +77,3 @@ export default function App() {
       </>
    );
 }
-
-const styles = StyleSheet.create({
-   container: {
-      flex: 1,
-      color: "white",
-      backgroundColor: "black",
-      alignItems: "center",
-      justifyContent: "center",
-   },
-});
