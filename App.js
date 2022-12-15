@@ -1,6 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from "@expo/vector-icons";
+
 import { StatusBar } from "expo-status-bar";
 import { Button } from "react-native";
 
@@ -29,9 +31,20 @@ const DrawerNavigator = () => {
             options={{
                headerShown: true,
                title: "All Categories",
+               drawerIcon: ({ color, size }) => (
+                  <Ionicons name="list" color={color} size={size} />
+               ),
             }}
          />
-         <Drawer.Screen name="Favorites" component={FavoritesScreen} />
+         <Drawer.Screen
+            name="Favorites"
+            component={FavoritesScreen}
+            options={{
+               drawerIcon: ({ color, size }) => (
+                  <Ionicons name="star" color={color} size={size} />
+               ),
+            }}
+         />
       </Drawer.Navigator>
    );
 };
